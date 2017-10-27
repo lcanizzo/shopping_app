@@ -1,5 +1,6 @@
--- MySQL Workbench Forward Engineering
+DROP DATABASE IF EXISTS `mydb`;
 
+-- MySQL Workbench Forward Engineering
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -31,8 +32,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `material` VARCHAR(255) NOT NULL,
-  `price` DECIMAL(6,2) GENERATED ALWAYS AS () VIRTUAL,
-  `purchases` INT NULL,
+  `price` DECIMAL(6,2),
   `views` INT NULL,
   `categories_id` INT NOT NULL,
   `SKU` VARCHAR(50) NULL,
@@ -225,6 +225,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`productsToOptions` (
     REFERENCES `mydb`.`options` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`admin`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`admin` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(40) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `first-name` VARCHAR(45) NULL,
+  `last-name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
