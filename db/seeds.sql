@@ -1,0 +1,100 @@
+-- | admin             |
+--     | id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+--     | email      | varchar(40) | NO   |     | NULL    |                |
+--     | password   | varchar(45) | NO   |     | NULL    |                |
+--     | first-name | varchar(45) | YES  |     | NULL    |                |
+--     | last-name  | varchar(45) | YES  |     | NULL    |                |
+-- | cart              |
+--     | id          | int(11) | NO   | PRI | NULL    | auto_increment |
+--     | createdDate | date    | NO   |     | NULL    |                |
+--     | users_id    | int(11) | NO   | PRI | NULL    |                |
+-- | cartitems         |
+--     | id            | int(11) | NO   | PRI | NULL    | auto_increment |
+--     | productId     | int(11) | NO   |     | NULL    |                |
+--     | quantity      | int(11) | NO   |     | NULL    |                |
+--     | createdDate   | date    | NO   |     | NULL    |                |
+--     | cart_id       | int(11) | NO   | PRI | NULL    |                |
+--     | cart_users_id | int(11) | NO   | PRI | NULL    |
+-- | categories        |
+--     | id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+--     | name  | varchar(45) | NO   |     | NULL    |
+-- | optiongroups      |
+--     | id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+--     | name  | varchar(50) | YES  |     | NULL
+-- | options           |
+--     | id              | int(11)     | NO   | PRI | NULL    | auto_increment |
+--     | name            | varchar(50) | YES  |     | NULL    |                |
+--     | optionGroups_id | int(11)     | NO   | PRI | NULL 
+-- | orders            |
+--     | id           | int(11)       | NO   | PRI | NULL    | auto_increment |
+--     | users_id     | int(11)       | NO   | PRI | NULL    |                |
+--     | total        | decimal(6,2)  | YES  |     | NULL    |                |
+--     | shipName     | varchar(100)  | YES  |     | NULL    |                |
+--     | shipAddress  | varchar(100)  | YES  |     | NULL    |                |
+--     | shipAddress2 | varchar(100)  | YES  |     | NULL    |                |
+--     | shipCity     | varchar(50)   | YES  |     | NULL    |                |
+--     | shipState    | varchar(45)   | YES  |     | NULL    |                |
+--     | shipZip      | varchar(20)   | YES  |     | NULL    |                |
+--     | shipCountry  | varchar(50)   | YES  |     | NULL    |                |
+--     | phone        | varchar(20)   | YES  |     | NULL    |                |
+--     | shippingCost | decimal(16,2) | YES  |     | NULL    |                |
+--     | email        | varchar(100)  | YES  |     | NULL    |                |
+--     | date         | timestamp     | YES  |     | NULL    |                |
+--     | shipped      | tinyint(4)    | YES  |     | 0       |                |
+--     | trackingNum  | varchar(80)   | YES  |     | NULL    |                |
+--     | orderscol    | varchar(45)   | YES  |     | NULL 
+-- | orderstoproducts  |
+--     | id                     | int(11)       | NO   | PRI | NULL    | auto_increment |
+--     | orders_id              | int(11)       | NO   | PRI | NULL    |                |
+--     | orders_users_id        | int(11)       | NO   | PRI | NULL    |                |
+--     | products_id            | int(11)       | NO   | PRI | NULL    |                |
+--     | products_categories_id | int(11)       | NO   | PRI | NULL    |                |
+--     | product_name           | varchar(250)  | YES  |     | NULL    |                |
+--     | product_price          | decimal(16,2) | YES  |     | NULL    |                |
+--     | product_SKU            | varchar(50)   | YES  |     | NULL    |                |
+--     | quantity               | int(11)       | YES  |     | NULL
+-- | products          |
+--     | id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+--     | name          | varchar(255) | NO   |     | NULL    |                |
+--     | material      | varchar(255) | NO   |     | NULL    |                |
+--     | price         | decimal(6,2) | YES  |     | NULL    |                |
+--     | purchases     | int(11)      | YES  |     | NULL    |                |
+--     | views         | int(11)      | YES  |     | NULL    |                |
+--     | categories_id | int(11)      | NO   | PRI | NULL    |                |
+--     | SKU           | varchar(50)  | YES  |     | NULL    |                |
+--     | weight        | float        | YES  |     | NULL    |                |
+--     | cartDesc      | varchar(250) | YES  |     | NULL    |                |
+--     | longDesc      | text         | YES  |     | NULL    |                |
+--     | thumb         | varchar(100) | YES  |     | NULL    |                |
+--     | image         | varchar(100) | YES  |     | NULL    |                |
+--     | productscol   | varchar(45)  | YES  |     | NULL    |                |
+--     | lastUpdate    | datetime     | YES  |     | NULL    |                |
+--     | stock         | int(11)      | YES  |     | NULL    |                |
+--     | live          | tinyint(4)   | YES  |     | NULL    |                |
+--     | inStock       | tinyint(4)   | YES  |     | NULL
+-- | productstooptions |
+--     | id                     | int(11) | NO   | PRI | NULL    | auto_increment |
+--     | products_id            | int(11) | NO   | PRI | NULL    |                |
+--     | products_categories_id | int(11) | NO   | PRI | NULL    |                |
+--     | options_id             | int(11) | NO   | PRI | NULL 
+-- | users             |
+--     | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+--     | first-name       | varchar(45)  | NO   |     | NULL    |                |
+--     | last-name        | varchar(45)  | NO   |     | NULL    |                |
+--     | email            | varchar(40)  | NO   |     | NULL    |                |
+--     | last-active      | datetime     | YES  |     | NULL    |                |
+--     | password         | varchar(45)  | NO   |     | NULL    |                |
+--     | city             | varchar(90)  | YES  |     | NULL    |                |
+--     | state            | varchar(20)  | YES  |     | NULL    |                |
+--     | zip              | varchar(12)  | YES  |     | NULL    |                |
+--     | emailVerified    | tinyint(4)   | YES  |     | NULL    |                |
+--     | registrationDate | timestamp    | YES  |     | NULL    |                |
+--     | verificationCode | varchar(20)  | YES  |     | NULL    |                |
+--     | IP               | varchar(50)  | YES  |     | NULL    |                |
+--     | phone            | varchar(20)  | YES  |     | NULL    |                |
+--     | address          | varchar(100) | YES  |     | NULL    |                |
+--     | address2         | varchar(50)  | YES  |     | NULL 
+
+
+
+USE `gameswap_db` ;
