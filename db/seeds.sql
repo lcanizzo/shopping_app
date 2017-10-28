@@ -91,13 +91,14 @@ VALUES (1, 2, 1);
 --     | options_id             | int(11) | NO   | PRI | NULL 
 
 INSERT INTO `cart` (`createdDate`, `users_id`)
-VALUES ('2008-11-11', 1);
+VALUES  ('2008-11-11', 1);
 -- | cart              |
 --     | id          | int(11) | NO   | PRI | NULL    | auto_increment |
 --     | createdDate | date    | NO   |     | NULL    |                |
 --     | users_id    | int(11) | NO   | PRI | NULL    |                |
 
-
+INSERT INTO `cartitems` (`productId`, `quantity`, `createdDate`, `cart_id`, `cart_users_id`)
+VALUES  (1, 4, '2017-11-24', 1, 1);
 -- | cartitems         |
 --     | id            | int(11) | NO   | PRI | NULL    | auto_increment |
 --     | productId     | int(11) | NO   |     | NULL    |                |
@@ -106,6 +107,8 @@ VALUES ('2008-11-11', 1);
 --     | cart_id       | int(11) | NO   | PRI | NULL    |                |
 --     | cart_users_id | int(11) | NO   | PRI | NULL    |
 
+INSERT INTO `orders` (`users_id`, `total`, `shipName`, `shipAddress`, `shipAddress2`, `shipCity`, `shipState`, `shipZip`, `shipCountry`, `phone`, `shippingCost`, `email`, `date`, `shipped`, `trackingNum`, `orderscol`)
+VALUES (1, 55.00, "Luca Canizzo", "640 Ramona Ln.", "Unit B", "Orlando", "FL", "32805", "United States", "407-973-4743", "15.00", "luca.canizzo@email.com", '2017-11-24', 0, "251961fdsde8", "orderscol");
 -- | orders            |
 --     | id           | int(11)       | NO   | PRI | NULL    | auto_increment |
 --     | users_id     | int(11)       | NO   | PRI | NULL    |                |
@@ -125,6 +128,8 @@ VALUES ('2008-11-11', 1);
 --     | trackingNum  | varchar(80)   | YES  |     | NULL    |                |
 --     | orderscol    | varchar(45)   | YES  |     | NULL 
 
+INSERT INTO `orderstoproducts` (`orders_id`, `orders_users_id`, `products_id`, `products_categories_id`, `product_name`, `product_price`, `quantity`)
+VALUES (1, 1, 1, 2, "Cuttingboard", "55.00", 2);
 -- | orderstoproducts  |
 --     | id                     | int(11)       | NO   | PRI | NULL    | auto_increment |
 --     | orders_id              | int(11)       | NO   | PRI | NULL    |                |
