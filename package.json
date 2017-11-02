@@ -2,8 +2,13 @@
   "name": "package.json",
   "version": "1.0.0",
   "description": "(demo) Walking through an exciting and engaging user-focused shopping experience.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "seed": "node scripts/seedDB.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,11 +21,16 @@
     "url": "https://github.com/lcanizzo/shopping_app/issues"
   },
   "homepage": "https://github.com/lcanizzo/shopping_app#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "mysql": "^2.15.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-router-dom": "^4.1.2"    
   }
 }

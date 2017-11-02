@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS `mydb`;
 
 -- MySQL Workbench Forward Engineering
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -33,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`products` (
   `name` VARCHAR(255) NOT NULL,
   `material` VARCHAR(255) NOT NULL,
   `price` DECIMAL(6,2),
-  `views` INT NULL,
+  `purchases` INT NULL,
   `categories_id` INT NOT NULL,
   `SKU` VARCHAR(50) NULL,
   `weight` FLOAT NULL,
@@ -41,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`products` (
   `longDesc` TEXT NULL,
   `thumb` VARCHAR(100) NULL,
   `image` VARCHAR(100) NULL,
-  `productscol` VARCHAR(45) NULL,
   `lastUpdate` DATETIME NULL,
   `stock` INT NULL,
   `live` TINYINT NULL,
@@ -137,7 +137,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
   `date` TIMESTAMP NULL,
   `shipped` TINYINT NULL DEFAULT 0,
   `trackingNum` VARCHAR(80) NULL,
-  `orderscol` VARCHAR(45) NULL,
   PRIMARY KEY (`id`, `users_id`),
   INDEX `fk_orders_users1_idx` (`users_id` ASC),
   CONSTRAINT `fk_orders_users1`
@@ -238,6 +237,33 @@ CREATE TABLE IF NOT EXISTS `mydb`.`admin` (
   `first-name` VARCHAR(45) NULL,
   `last-name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`productsUpdates`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`productsUpdates` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `products_id` INT NOT NULL,
+  `admin_id` INT NOT NULL,
+  `property` VARCHAR(45) NOT NULL,
+  `initial` VARCHAR(45) NOT NULL,
+  `update` VARCHAR(45) NOT NULL,
+  `date` DATE NOT NULL,
+  PRIMARY KEY (`id`, `products_id`, `admin_id`),
+  INDEX `fk_productsUpdates_products1_idx` (`products_id` ASC),
+  INDEX `fk_productsUpdates_admin1_idx` (`admin_id` ASC),
+  CONSTRAINT `fk_productsUpdates_products1`
+    FOREIGN KEY (`products_id`)
+    REFERENCES `mydb`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_productsUpdates_admin1`
+    FOREIGN KEY (`admin_id`)
+    REFERENCES `mydb`.`admin` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
